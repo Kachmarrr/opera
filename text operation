@@ -1,0 +1,87 @@
+def alFabet(text):
+    text = text.replace(".", " ")
+    text = text.replace(",", " ")
+
+    words = text.split()
+    word = {}
+
+    for a in words:
+        if len(a) > 3:
+            word.update({a: words.count(a)})
+
+    b = []
+    for key in word:
+        b.append(key)
+
+    b.sort()
+
+    print("The sorted words are:")
+    for key in b:
+        print(key)
+
+def sortRepoint(text):
+    text = text.replace(".", " ")
+    text = text.replace(",", " ")
+
+    words = text.split()
+    a = {}
+
+
+    for word in words:
+        a.update({word: words.count(word)})
+
+    wordsWithCount = {}
+    for word in a:
+        wordsWithCount.update({word: words.count(word)})
+
+    iteration = 1
+    for word in sorted(wordsWithCount.items(), key=lambda item: item[1], reverse=True):
+        if iteration <= 5:
+            print(f"{word[0]}: {word[1]}")
+            iteration += 1;
+    print("\n")
+
+def sortLength(text):
+    text = text.replace(".", " ")
+    text = text.replace(",", " ")
+
+    allWords = text.split()
+    allWordsSingle = {};
+
+    for word in allWords:
+        allWordsSingle.update({word: allWords.count(word)})
+
+    wordsWithCount = {}
+    for word in allWordsSingle:
+        wordsWithCount.update({word: allWords.count(word)})
+
+    iteration = 1
+    for word in sorted(wordsWithCount.items(), key=lambda item: item[1], reverse=True):
+        for i in sorted(allWords, key=len, reverse=True):
+            if iteration <= 5:
+                print(f"{i}")
+                iteration += 1
+
+def sortLen(text):
+
+    a = text.split()
+    b = len(a)
+
+    print("number words in text : \n", b)
+    print("number of words : \n", len(text))
+
+text = input("Enter text: ")
+while True:
+
+    action = input("Select action: \n1 - Show words sorted\n2 - Show FIVE words common\n3 - Show FIVE length words\n4 - Show text len\n")
+
+    if action == "1":
+        alFabet(text);
+    elif action == "2":
+        sortRepoint(text)
+    elif action == "3":
+        sortLength(text)
+    elif action == "4":
+        sortLen(text)
+    else:
+        print("you dayn")
